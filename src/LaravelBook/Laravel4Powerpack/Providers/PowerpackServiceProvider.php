@@ -10,7 +10,6 @@
  */
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Pluralizer;
 use LaravelBook\Laravel4Powerpack\HTML;
 use LaravelBook\Laravel4Powerpack\Form;
 use LaravelBook\Laravel4Powerpack\Str;
@@ -44,7 +43,7 @@ class PowerpackServiceProvider extends ServiceProvider {
 			} );
 
 		$this->app['form'] = $this->app->share( function( $app ) {
-				return new Form( $app['html'], $app['session'] );
+				return new Form( $app['html'] );
 			} );
 
 		$this->app['str'] = $this->app->share( function( $app ) {

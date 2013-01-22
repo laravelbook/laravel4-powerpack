@@ -1,4 +1,4 @@
-<?php LaravelBook\Laravel4Powerpack;
+<?php namespace LaravelBook\Laravel4Powerpack;
 
 /*
  * This file is part of the Laravel 4 Powerpack package.
@@ -11,7 +11,6 @@
 
 use LaravelBook\Laravel4Powerpack\HTML;
 use Illuminate\Routing\UrlGenerator as Url;
-use Illuminate\Session\Store as Session;
 
 class Form {
 
@@ -57,13 +56,10 @@ class Form {
 	 */
 	protected $html;
 
-	protected $session;
 
-
-	public function __construct( HTML $html, Session $session ) {
+	public function __construct( HTML $html ) {
 		$this->html = $html;
 		$this->url = $html->getUrlGenerator();
-		$this->session - $session;
 	}
 
 	/**
@@ -204,8 +200,8 @@ class Form {
 	 *
 	 * @return string
 	 */
-	public static function token() {
-		return $this->input( 'hidden', 'csrf_token', $this->session->getToken() );
+	public function token() {
+		return $this->input( 'hidden', 'csrf_token', csrf_token() );
 	}
 
 	/**
