@@ -42,9 +42,9 @@ You'll now have a `composer.json`, `composer.lock` as well as a `vendor` folder 
 
 The folder `vendor/laravelbook/laravel4-powerpack` contain the **Laravel 4 PowerPack** components:
 
-	laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/HTML.php
-	laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Form.php
-	laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
+	vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/HTML.php
+	vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Form.php
+	vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
 	
 By default, composer will autoload the required classes. If you encounter any error, run the following command to force composer re-generate the autoload file:
 
