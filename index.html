@@ -1,0 +1,588 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Laravel4-powerpack by laravelbook</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Laravel4-powerpack</h1>
+        <p>Brings back helpers to Laravel 4</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/laravelbook/laravel4-powerpack" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/laravelbook/laravel4-powerpack/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/laravelbook/laravel4-powerpack/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>laravel4-powerpack</h1>
+
+<p>Brings back the helper classes from Laravel 3 to Laravel 4... and all that in a single, convenient package!</p>
+
+<p><strong><code>laravel4-powerpack</code></strong> contains Laravel 4 ports of the following helper classes:</p>
+
+<ul>
+<li><p><a href="#html_class">HTML</a></p></li>
+<li><p><a href="#form_class">Form</a></p></li>
+<li><p><a href="#str_class">Str</a></p></li>
+</ul><p><a name="html_class"></a></p>
+
+<h1>Building HTML</h1>
+
+<h2>Content</h2>
+
+<ul>
+<li><a href="#entities">Entities</a></li>
+<li><a href="#scripts-and-style-sheets">Scripts And Style Sheets</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#links-to-named-routes">Links To Named Routes</a></li>
+<li><a href="#links-to-controller-actions">Links To Controller Actions</a></li>
+<li><a href="#mail-to-links">Mail-To Links</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#custom-macros">Custom Macros</a></li>
+</ul><p><a name="entities"></a></p>
+
+<h2>Entities</h2>
+
+<p>When displaying user input in your Views, it is important to convert all characters which have significance in HTML to their "entity" representation.</p>
+
+<p>For example, the &lt; symbol should be converted to its entity representation. Converting HTML characters to their entity representation helps protect your application from cross-site scripting:</p>
+
+<h4>Converting a string to its entity representation:</h4>
+
+<pre><code>echo HTML::entities('&lt;script&gt;alert(\'hi\');&lt;/script&gt;');
+</code></pre>
+
+<h4>Using the "e" global helper:</h4>
+
+<pre><code>echo e('&lt;script&gt;alert(\'hi\');&lt;/script&gt;');
+</code></pre>
+
+<p><a name="scripts-and-style-sheets"></a></p>
+
+<h2>Scripts And Style Sheets</h2>
+
+<h4>Generating a reference to a JavaScript file:</h4>
+
+<pre><code>echo HTML::script('js/scrollTo.js');
+</code></pre>
+
+<h4>Generating a reference to a CSS file:</h4>
+
+<pre><code>echo HTML::style('css/common.css');
+</code></pre>
+
+<h4>Generating a reference to a CSS file using a given media type:</h4>
+
+<pre><code>echo HTML::style('css/common.css', array('media' =&gt; 'print'));
+</code></pre>
+
+<p><em>Further Reading:</em></p>
+
+<ul>
+<li><em><a href="/docs/views/assets">Managing Assets</a></em></li>
+</ul><p><a name="links"></a></p>
+
+<h2>Links</h2>
+
+<h4>Generating a link from a URI:</h4>
+
+<pre><code>echo HTML::link('user/profile', 'User Profile');
+</code></pre>
+
+<h4>Generating a link that should use HTTPS:</h4>
+
+<pre><code>echo HTML::secure('user/profile', 'User Profile');
+</code></pre>
+
+<h4>Generating a link and specifying extra HTML attributes:</h4>
+
+<pre><code>echo HTML::link('user/profile', 'User Profile', array('id' =&gt; 'profile_link'));
+</code></pre>
+
+<p><a name="links-to-named-routes"></a></p>
+
+<h2>Links To Named Routes</h2>
+
+<h4>Generating a link to a named route:</h4>
+
+<pre><code>echo HTML::route('profile');
+</code></pre>
+
+<h4>Generating a link to a named route with wildcard values:</h4>
+
+<pre><code>$url = HTML::route('profile', 'User Profile', array($username));
+</code></pre>
+
+<p><em>Further Reading:</em></p>
+
+<ul>
+<li><em><a href="/docs/routing#named-routes">Named Routes</a></em></li>
+</ul><p><a name="links-to-controller-actions"></a></p>
+
+<h2>Links To Controller Actions</h2>
+
+<h4>Generating a link to a controller action:</h4>
+
+<pre><code>echo HTML::action('home@index');
+</code></pre>
+
+<h3>Generating a link to a controller action with wildcard values:</h3>
+
+<pre><code>echo HTML::action('user@profile', 'User Profile', array($username));
+</code></pre>
+
+<p><a name="mail-to-links"></a></p>
+
+<h2>Mail-To Links</h2>
+
+<p>The "mailto" method on the HTML class obfuscates the given e-mail address so it is not sniffed by bots.</p>
+
+<h4>Creating a mail-to link:</h4>
+
+<pre><code>echo HTML::mailto('example@gmail.com', 'E-Mail Me!');
+</code></pre>
+
+<h4>Creating a mail-to link using the e-mail address as the link text:</h4>
+
+<pre><code>echo HTML::mailto('example@gmail.com');
+</code></pre>
+
+<p><a name="images"></a></p>
+
+<h2>Images</h2>
+
+<h4>Generating an HTML image tag:</h4>
+
+<pre><code>echo HTML::image('img/smile.jpg', $alt_text);
+</code></pre>
+
+<h4>Generating an HTML image tag with extra HTML attributes:</h4>
+
+<pre><code>echo HTML::image('img/smile.jpg', $alt_text, array('id' =&gt; 'smile'));
+</code></pre>
+
+<p><a name="lists"></a></p>
+
+<h2>Lists</h2>
+
+<h4>Creating lists from an array of items:</h4>
+
+<pre><code>echo HTML::ol(array('Get Peanut Butter', 'Get Chocolate', 'Feast'));
+
+echo HTML::ul(array('Ubuntu', 'Snow Leopard', 'Windows'));
+
+echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows' =&gt; 'An operating system by Microsoft'));
+</code></pre>
+
+<p><a name="custom-macros"></a></p>
+
+<h2>Custom Macros</h2>
+
+<p>It's easy to define your own custom HTML class helpers called "macros". Here's how it works. First, simply register the macro with a given name and a Closure:</p>
+
+<h4>Registering a HTML macro:</h4>
+
+<pre><code>HTML::macro('myElement', function()
+{
+    return '&lt;article type="awesome"&gt;';
+});
+</code></pre>
+
+<p>Now you can call your macro using its name:</p>
+
+<h4>Calling a custom HTML macro:</h4>
+
+<pre><code>echo HTML::myElement();
+</code></pre>
+
+<hr><p><a name="form_class"></a></p>
+
+<h1>Building Forms</h1>
+
+<h2>Contents</h2>
+
+<ul>
+<li><a href="#opening-a-form">Opening A Form</a></li>
+<li><a href="#csrf-protection">CSRF Protection</a></li>
+<li><a href="#labels">Labels</a></li>
+<li><a href="#text">Text, Text Area, Password &amp; Hidden Fields</a></li>
+<li><a href="#file">File Input</a></li>
+<li><a href="#checkboxes-and-radio-buttons">Checkboxes and Radio Buttons</a></li>
+<li><a href="#drop-down-lists">Drop-Down Lists</a></li>
+<li><a href="#buttons">Buttons</a></li>
+<li><a href="#custom-macros">Custom Macros</a></li>
+</ul><blockquote>
+<p><strong>Note:</strong> All input data displayed in form elements is filtered through the HTML::entities method.</p>
+</blockquote>
+
+<p><a name="opening-a-form"></a></p>
+
+<h2>Opening A Form</h2>
+
+<h4>Opening a form to POST to the current URL:</h4>
+
+<pre><code>echo Form::open();
+</code></pre>
+
+<h4>Opening a form using a given URI and request method:</h4>
+
+<pre><code>echo Form::open('user/profile', 'PUT');
+</code></pre>
+
+<h4>Opening a Form that POSTS to a HTTPS URL:</h4>
+
+<pre><code>echo Form::openSecure('user/profile');
+</code></pre>
+
+<h4>Specifying extra HTML attributes on a form open tag:</h4>
+
+<pre><code>echo Form::open('user/profile', 'POST', array('class' =&gt; 'awesome'));
+</code></pre>
+
+<h4>Opening a form that accepts file uploads:</h4>
+
+<pre><code>echo Form::openForFiles('users/profile');
+</code></pre>
+
+<h4>Opening a form that accepts file uploads and uses HTTPS:</h4>
+
+<pre><code>echo Form::openSecureForFiles('users/profile');
+</code></pre>
+
+<h4>Closing a form:</h4>
+
+<pre><code>echo Form::close();
+</code></pre>
+
+<p><a name="csrf-protection"></a></p>
+
+<h2>CSRF Protection</h2>
+
+<p>Laravel provides an easy method of protecting your application from cross-site request forgeries. First, a random token is placed in your user's session. Don't sweat it, this is done automatically. Next, use the token method to generate a hidden form input field containing the random token on your form:</p>
+
+<h4>Generating a hidden field containing the session's CSRF token:</h4>
+
+<pre><code>echo Form::token();
+</code></pre>
+
+<h4>Attaching the CSRF filter to a route:</h4>
+
+<pre><code>Route::post('profile', array('before' =&gt; 'csrf', function()
+{
+    //
+}));
+</code></pre>
+
+<h4>Retrieving the CSRF token string:</h4>
+
+<pre><code>$token = Session::getToken();
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> You must specify a session driver before using the Laravel CSRF protection facilities.</p>
+</blockquote>
+
+<p><em>Further Reading:</em></p>
+
+<ul>
+<li><a href="/docs/routing#filters">Route Filters</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross-Site Request Forgery</a></li>
+</ul><p><a name="labels"></a></p>
+
+<h2>Labels</h2>
+
+<h4>Generating a label element:</h4>
+
+<pre><code>echo Form::label('email', 'E-Mail Address');
+</code></pre>
+
+<h4>Specifying extra HTML attributes for a label:</h4>
+
+<pre><code>echo Form::label('email', 'E-Mail Address', array('class' =&gt; 'awesome'));
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> After creating a label, any form element you create with a name matching the label name will automatically receive an ID matching the label name as well.</p>
+</blockquote>
+
+<p><a name="text"></a></p>
+
+<h2>Text, Text Area, Password &amp; Hidden Fields</h2>
+
+<h4>Generate a text input element:</h4>
+
+<pre><code>echo Form::text('username');
+</code></pre>
+
+<h4>Specifying a default value for a text input element:</h4>
+
+<pre><code>echo Form::text('email', 'example@gmail.com');
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> The <em>hidden</em> and <em>textarea</em> methods have the same signature as the <em>text</em> method. You just learned three methods for the price of one!</p>
+</blockquote>
+
+<h4>Generating a password input element:</h4>
+
+<pre><code>echo Form::password('password');
+</code></pre>
+
+<p><a name="checkboxes-and-radio-buttons"></a></p>
+
+<h2>Checkboxes and Radio Buttons</h2>
+
+<h4>Generating a checkbox input element:</h4>
+
+<pre><code>echo Form::checkbox('name', 'value');
+</code></pre>
+
+<h4>Generating a checkbox that is checked by default:</h4>
+
+<pre><code>echo Form::checkbox('name', 'value', true);
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> The <em>radio</em> method has the same signature as the <em>checkbox</em> method. Two for one!</p>
+</blockquote>
+
+<p><a name="file"></a></p>
+
+<h2>File Input</h2>
+
+<h4>Generate a file input element:</h4>
+
+<pre><code>echo Form::file('image');
+</code></pre>
+
+<p><a name="drop-down-lists"></a></p>
+
+<h2>Drop-Down Lists</h2>
+
+<h4>Generating a drop-down list from an array of items:</h4>
+
+<pre><code>echo Form::select('size', array('L' =&gt; 'Large', 'S' =&gt; 'Small'));
+</code></pre>
+
+<h4>Generating a drop-down list with an item selected by default:</h4>
+
+<pre><code>echo Form::select('size', array('L' =&gt; 'Large', 'S' =&gt; 'Small'), 'S');
+</code></pre>
+
+<p><a name="buttons"></a></p>
+
+<h2>Buttons</h2>
+
+<h4>Generating a submit button element:</h4>
+
+<pre><code>echo Form::submit('Click Me!');
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> Need to create a button element? Try the <em>button</em> method. It has the same signature as <em>submit</em>.</p>
+</blockquote>
+
+<p><a name="custom-macros"></a></p>
+
+<h2>Custom Macros</h2>
+
+<p>It's easy to define your own custom Form class helpers called "macros". Here's how it works. First, simply register the macro with a given name and a Closure:</p>
+
+<h4>Registering a Form macro:</h4>
+
+<pre><code>Form::macro('myField', function()
+{
+    return '&lt;input type="awesome"&gt;';
+});
+</code></pre>
+
+<p>Now you can call your macro using its name:</p>
+
+<h4>Calling a custom Form macro:</h4>
+
+<pre><code>echo Form::myField();
+</code></pre>
+
+<hr><p><a name="str_class"></a></p>
+
+<h1>Working With Strings</h1>
+
+<h2>Contents</h2>
+
+<ul>
+<li><a href="#capitalization">Capitalization, Etc.</a></li>
+<li><a href="#limits">Word &amp; Character Limiting</a></li>
+<li><a href="#random">Generating Random Strings</a></li>
+<li><a href="#singular-and-plural">Singular &amp; Plural</a></li>
+<li><a href="#slugs">Slugs</a></li>
+<li><a href="#case">Case Conversion</a></li>
+<li><a href="#search">String Searching</a></li>
+</ul><p><a name="capitalization"></a></p>
+
+<h2>Capitalization, Etc.</h2>
+
+<p>The <strong>Str</strong> class provides three convenient methods for manipulating string capitalization: <strong>upper</strong>, <strong>lower</strong>, and <strong>title</strong>. These are more intelligent versions of the PHP <a href="http://php.net/manual/en/function.strtoupper.php">strtoupper</a>, <a href="http://php.net/manual/en/function.strtolower.php">strtolower</a>, and <a href="http://php.net/manual/en/function.ucwords.php">ucwords</a> methods. More intelligent because they can handle UTF-8 input if the <a href="http://php.net/manual/en/book.mbstring.php">multi-byte string</a> PHP extension is installed on your web server. To use them, just pass a string to the method:</p>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">lower</span><span class="p">(</span><span class="s1">'I am a string.'</span><span class="p">);</span>
+<span class="c1">// i am a string.</span>
+
+<span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">upper</span><span class="p">(</span><span class="s1">'I am a string.'</span><span class="p">);</span>
+<span class="c1">// I AM A STRING.</span>
+
+<span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">title</span><span class="p">(</span><span class="s1">'I am a string.'</span><span class="p">);</span>
+<span class="c1">// I Am A String.</span>
+</pre></div>
+
+<p><strong>Additional methods:</strong></p>
+
+<p><code>length( $string )</code>: Get the length of a string.</p>
+
+<div class="highlight"><pre><span class="c1">// Get the length of a string</span>
+<span class="nv">$length</span> <span class="o">=</span> <span class="nx">Str</span><span class="o">::</span><span class="na">length</span><span class="p">(</span><span class="s1">'Taylor Otwell'</span><span class="p">);</span>
+
+<span class="c1">// Get the length of a multi-byte string</span>
+<span class="nv">$length</span> <span class="o">=</span> <span class="nx">Str</span><span class="o">::</span><span class="na">length</span><span class="p">(</span><span class="s1">'Τάχιστη'</span><span class="p">)</span>
+</pre></div>
+
+<p><code>upperWords( $string ):</code> Convert first letter of each word to uppercase.</p>
+
+<p><a name="limits"></a></p>
+
+<h2>Word &amp; Character Limiting</h2>
+
+<h4>Limiting the number of characters in a string:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">limit</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="c1">// Lorem ipsu...</span>
+
+<span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">limitExact</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="c1">// Lorem i...</span>
+
+<span class="c1">// Limit the number of characters and append a custom ending</span>
+<span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">limitExact</span><span class="p">(</span><span class="s1">'Taylor Otwell'</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">'---'</span><span class="p">);</span>
+</pre></div>
+
+<h4>Limiting the number of words in a string:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">words</span><span class="p">(</span><span class="s2">"Lorem ipsum dolor sit amet"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="c1">// Lorem ipsum dolor...</span>
+
+<span class="c1">// Limit the number of words and append a custom ending</span>
+<span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">words</span><span class="p">(</span><span class="s1">'This is a sentence.'</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'---'</span><span class="p">);</span>
+</pre></div>
+
+<p><code>wordwrap( $string, $length )</code>: Adds a space to a string after a given amount of contiguous, non-whitespace characters.</p>
+
+<p><a name="random"></a></p>
+
+<h2>Generating Random Strings</h2>
+
+<h4>Generating a random string of alpha-numeric characters:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">random</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+</pre></div>
+
+<h4>Generating a random string of alphabetic characters:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">random</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="s1">'alpha'</span><span class="p">);</span>
+</pre></div>
+
+<p><a name="singular-and-plural"></a></p>
+
+<h2>Singular &amp; Plural</h2>
+
+<h4>Getting the plural form of a word:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">plural</span><span class="p">(</span><span class="s1">'user'</span><span class="p">);</span>
+<span class="c1">// users</span>
+</pre></div>
+
+<h4>Getting the singular form of a word:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">singular</span><span class="p">(</span><span class="s1">'users'</span><span class="p">);</span>
+<span class="c1">// user</span>
+</pre></div>
+
+<h4>Getting the plural form if specified value is greater than one:</h4>
+
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Str</span><span class="o">::</span><span class="na">plural</span><span class="p">(</span><span class="s1">'comment'</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$comments</span><span class="p">));</span>
+</pre></div>
+
+<p><a name="slugs"></a></p>
+
+<h2>Slugs</h2>
+
+<h4>Generating a URL friendly slug:</h4>
+
+<div class="highlight"><pre><span class="k">return</span> <span class="nx">Str</span><span class="o">::</span><span class="na">slug</span><span class="p">(</span><span class="s1">'My First Blog Post!'</span><span class="p">);</span>
+<span class="c1">// my-first-blog-post</span>
+</pre></div>
+
+<h4>Generating a URL friendly slug using a given separator:</h4>
+
+<div class="highlight"><pre><span class="k">return</span> <span class="nx">Str</span><span class="o">::</span><span class="na">slug</span><span class="p">(</span><span class="s1">'My First Blog Post!'</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">);</span>
+<span class="c1">// my_first_blog_post</span>
+</pre></div>
+
+<p><a name="case"></a></p>
+
+<h2>Case Conversion</h2>
+
+<p><code>ascii( $value )</code>: Convert a string to 7-bit ASCII.</p>
+
+<p><code>classify( $value )</code>: Convert a string to an underscored, camel-cased class name.</p>
+
+<div class="highlight"><pre><span class="nv">$class</span> <span class="o">=</span> <span class="nx">Str</span><span class="o">::</span><span class="na">classify</span><span class="p">(</span><span class="s1">'task_name'</span><span class="p">);</span> <span class="c1">// Returns "Task_Name"</span>
+
+<span class="nv">$class</span> <span class="o">=</span> <span class="nx">Str</span><span class="o">::</span><span class="na">classify</span><span class="p">(</span><span class="s1">'taylor otwell'</span><span class="p">)</span> <span class="c1">// Returns "Taylor_Otwell"</span>
+</pre></div>
+
+<p><code>camelCase( $value )</code>: Convert a value to camel case.</p>
+
+<p><a name="search"></a></p>
+
+<h2>String Searching</h2>
+
+<p><code>is( $pattern, $value )</code>: Determine if a given string matches a given pattern.</p>
+
+<p><code>endsWith( $haystack, $needle )</code>: Determine if a given string ends with a given needle.</p>
+
+<p><code>startsWith( $haystack, $needle )</code>: Determine if a string starts with a given needle.</p>
+
+<p><code>contains( $haystack, $needle )</code>: Determine if a given string contains a given sub-string.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/laravelbook">laravelbook</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
