@@ -112,26 +112,30 @@ For example, the < symbol should be converted to its entity representation. Conv
 
 #### Converting a string to its entity representation:
 
-	echo HTML::entities('<script>alert(\'hi\');</script>');
-
-#### Using the "e" global helper:
-
-	echo e('<script>alert(\'hi\');</script>');
+~~~php
+echo HTML::entities('<script>alert(\'hi\');</script>');
+~~~
 
 <a name="scripts-and-style-sheets"></a>
 ## Scripts And Style Sheets
 
 #### Generating a reference to a JavaScript file:
 
-	echo HTML::script('js/scrollTo.js');
+~~~php
+echo HTML::script('js/scrollTo.js');
+~~~
 
 #### Generating a reference to a CSS file:
 
-	echo HTML::style('css/common.css');
+~~~php
+echo HTML::style('css/common.css');
+~~~
 
 #### Generating a reference to a CSS file using a given media type:
 
-	echo HTML::style('css/common.css', array('media' => 'print'));
+~~~php
+echo HTML::style('css/common.css', array('media' => 'print'));
+~~~
 
 *Further Reading:*
 
@@ -142,26 +146,36 @@ For example, the < symbol should be converted to its entity representation. Conv
 
 #### Generating a link from a URI:
 
-	echo HTML::link('user/profile', 'User Profile');
+~~~php
+echo HTML::link('user/profile', 'User Profile');
+~~~
 
 #### Generating a link that should use HTTPS:
 
-	echo HTML::secure('user/profile', 'User Profile');
+~~~php
+echo HTML::secure('user/profile', 'User Profile');
+~~~
 
 #### Generating a link and specifying extra HTML attributes:
 
-	echo HTML::link('user/profile', 'User Profile', array('id' => 'profile_link'));
+~~~php
+echo HTML::link('user/profile', 'User Profile', array('id' => 'profile_link'));
+~~~
 
 <a name="links-to-named-routes"></a>
 ## Links To Named Routes
 
 #### Generating a link to a named route:
 
-	echo HTML::route('profile');
+~~~php
+echo HTML::route('profile');
+~~~
 
 #### Generating a link to a named route with wildcard values:
 
-	$url = HTML::route('profile', 'User Profile', array($username));
+~~~php
+$url = HTML::route('profile', 'User Profile', array($username));
+~~~
 
 *Further Reading:*
 
@@ -172,11 +186,15 @@ For example, the < symbol should be converted to its entity representation. Conv
 
 #### Generating a link to a controller action:
 
-	echo HTML::action('home@index');
+~~~php
+echo HTML::action('home@index');
+~~~
 
 ### Generating a link to a controller action with wildcard values:
 
-	echo HTML::action('user@profile', 'User Profile', array($username));
+~~~php
+echo HTML::action('user@profile', 'User Profile', array($username));
+~~~
 
 <a name="mail-to-links"></a>
 ## Mail-To Links
@@ -185,33 +203,43 @@ The "mailto" method on the HTML class obfuscates the given e-mail address so it 
 
 #### Creating a mail-to link:
 
-	echo HTML::mailto('example@gmail.com', 'E-Mail Me!');
+~~~php
+echo HTML::mailto('example@gmail.com', 'E-Mail Me!');
+~~~
 
 #### Creating a mail-to link using the e-mail address as the link text:
 
-	echo HTML::mailto('example@gmail.com');
+~~~php
+echo HTML::mailto('example@gmail.com');
+~~~
 
 <a name="images"></a>
 ## Images
 
 #### Generating an HTML image tag:
 
-	echo HTML::image('img/smile.jpg', $alt_text);
+~~~php
+echo HTML::image('img/smile.jpg', $alt_text);
+~~~
 
 #### Generating an HTML image tag with extra HTML attributes:
 
-	echo HTML::image('img/smile.jpg', $alt_text, array('id' => 'smile'));
+~~~php
+echo HTML::image('img/smile.jpg', $alt_text, array('id' => 'smile'));
+~~~
 
 <a name="lists"></a>
 ## Lists
 
 #### Creating lists from an array of items:
 
-	echo HTML::ol(array('Get Peanut Butter', 'Get Chocolate', 'Feast'));
+~~~php
+echo HTML::ol(array('Get Peanut Butter', 'Get Chocolate', 'Feast'));
 
-	echo HTML::ul(array('Ubuntu', 'Snow Leopard', 'Windows'));
+echo HTML::ul(array('Ubuntu', 'Snow Leopard', 'Windows'));
 
-	echo HTML::dl(array('Ubuntu' => 'An operating system by Canonical', 'Windows' => 'An operating system by Microsoft'));
+echo HTML::dl(array('Ubuntu' => 'Canonical', 'Windows' => 'Microsoft'));
+~~~
 
 <a name="custom-macros"></a>
 ## Custom Macros
@@ -220,16 +248,20 @@ It's easy to define your own custom HTML class helpers called "macros". Here's h
 
 #### Registering a HTML macro:
 
-	HTML::macro('myElement', function()
-	{
-		return '<article type="awesome">';
-	});
+~~~php
+HTML::macro('myElement', function()
+{
+	return '<article type="awesome">';
+});
+~~~
 
 Now you can call your macro using its name:
 
 #### Calling a custom HTML macro:
 
-	echo HTML::myElement();
+~~~php
+echo HTML::myElement();
+~~~
 
 ---
 
@@ -255,31 +287,45 @@ Now you can call your macro using its name:
 
 #### Opening a form to POST to the current URL:
 
-	echo Form::open();
+~~~php
+echo Form::open();
+~~~
 
 #### Opening a form using a given URI and request method:
 
-	echo Form::open('user/profile', 'PUT');
+~~~php
+echo Form::open('user/profile', 'PUT');
+~~~
 
 #### Opening a Form that POSTS to a HTTPS URL:
 
-	echo Form::openSecure('user/profile');
+~~~php
+echo Form::openSecure('user/profile');
+~~~
 
 #### Specifying extra HTML attributes on a form open tag:
 
-	echo Form::open('user/profile', 'POST', array('class' => 'awesome'));
+~~~php
+echo Form::open('user/profile', 'POST', array('class' => 'awesome'));
+~~~
 
 #### Opening a form that accepts file uploads:
 
-	echo Form::openForFiles('users/profile');
+~~~php
+echo Form::openForFiles('users/profile');
+~~~
 
 #### Opening a form that accepts file uploads and uses HTTPS:
 
-	echo Form::openSecureForFiles('users/profile');
+~~~php
+echo Form::openSecureForFiles('users/profile');
+~~~
 
 #### Closing a form:
 
-	echo Form::close();
+~~~php
+echo Form::close();
+~~~
 
 <a name="csrf-protection"></a>
 ## CSRF Protection
@@ -288,18 +334,24 @@ Laravel provides an easy method of protecting your application from cross-site r
 
 #### Generating a hidden field containing the session's CSRF token:
 
-	echo Form::token();
+~~~php
+echo Form::token();
+~~~
 
 #### Attaching the CSRF filter to a route:
 
-	Route::post('profile', array('before' => 'csrf', function()
-	{
-		//
-	}));
+~~~php
+Route::post('profile', array('before' => 'csrf', function()
+{
+	//
+}));
+~~~
 
 #### Retrieving the CSRF token string:
 
-	$token = Session::getToken();
+~~~php
+$token = Session::getToken();
+~~~
 
 > **Note:** You must specify a session driver before using the Laravel CSRF protection facilities.
 
@@ -313,11 +365,15 @@ Laravel provides an easy method of protecting your application from cross-site r
 
 #### Generating a label element:
 
-	echo Form::label('email', 'E-Mail Address');
+~~~php
+echo Form::label('email', 'E-Mail Address');
+~~~
 
 #### Specifying extra HTML attributes for a label:
 
-	echo Form::label('email', 'E-Mail Address', array('class' => 'awesome'));
+~~~php
+echo Form::label('email', 'E-Mail Address', array('class' => 'awesome'));
+~~~
 
 > **Note:** After creating a label, any form element you create with a name matching the label name will automatically receive an ID matching the label name as well.
 
@@ -326,28 +382,38 @@ Laravel provides an easy method of protecting your application from cross-site r
 
 #### Generate a text input element:
 
-	echo Form::text('username');
+~~~php
+echo Form::text('username');
+~~~
 
 #### Specifying a default value for a text input element:
 
-	echo Form::text('email', 'example@gmail.com');
+~~~php
+echo Form::text('email', 'example@gmail.com');
+~~~
 
 > **Note:** The *hidden* and *textarea* methods have the same signature as the *text* method. You just learned three methods for the price of one!
 
 #### Generating a password input element:
 
-	echo Form::password('password');
+~~~php
+echo Form::password('password');
+~~~
 
 <a name="checkboxes-and-radio-buttons"></a>
 ## Checkboxes and Radio Buttons
 
 #### Generating a checkbox input element:
 
-	echo Form::checkbox('name', 'value');
+~~~php
+echo Form::checkbox('name', 'value');
+~~~
 
 #### Generating a checkbox that is checked by default:
 
-	echo Form::checkbox('name', 'value', true);
+~~~php
+echo Form::checkbox('name', 'value', true);
+~~~
 
 > **Note:** The *radio* method has the same signature as the *checkbox* method. Two for one!
 
@@ -356,25 +422,33 @@ Laravel provides an easy method of protecting your application from cross-site r
 
 #### Generate a file input element:
 
-	echo Form::file('image');
+~~~php
+echo Form::file('image');
+~~~
 
 <a name="drop-down-lists"></a>
 ## Drop-Down Lists
 
 #### Generating a drop-down list from an array of items:
 
-	echo Form::select('size', array('L' => 'Large', 'S' => 'Small'));
+~~~php
+echo Form::select('size', array('L' => 'Large', 'S' => 'Small'));
+~~~
 
 #### Generating a drop-down list with an item selected by default:
 
-	echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
+~~~php
+echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
+~~~
 
 <a name="buttons"></a>
 ## Buttons
 
 #### Generating a submit button element:
 
-	echo Form::submit('Click Me!');
+~~~php
+echo Form::submit('Click Me!');
+~~~
 
 > **Note:** Need to create a button element? Try the *button* method. It has the same signature as *submit*.
 
@@ -385,17 +459,20 @@ It's easy to define your own custom Form class helpers called "macros". Here's h
 
 #### Registering a Form macro:
 
-	Form::macro('myField', function()
-	{
-		return '<input type="awesome">';
-	});
+~~~php
+Form::macro('myField', function()
+{
+	return '<input type="awesome">';
+});
+~~~
 
 Now you can call your macro using its name:
 
 #### Calling a custom Form macro:
 
-	echo Form::myField();
-
+~~~php
+echo Form::myField();
+~~~
 
 ---
 
