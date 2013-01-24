@@ -11,6 +11,83 @@ Brings back the helper classes from Laravel 3 to Laravel 4... and all that in a 
 
 - [Str](#str_class)
 
+# Installation
+
+Open up the Laravel 4 `composer.json` file and add the `laravelbook/laravel4-powerpack` package to the `require` section:
+
+~~~json
+{
+	"require": {
+		"laravel/framework": "4.0.*",
+		...
+		"laravelbook/laravel4-powerpack": "dev-master"
+	}
+	...
+}
+~~~
+
+Run the composer `install` or `update` task, which will make composer download requested packages and setup initial environment:
+
+~~~sh
+$ composer update
+~~~
+
+You'll now have a `composer.json`, `composer.lock` as well as a `vendor` folder which contains:
+
+	vendor/autoload.php
+	vendor/composer
+	vendor/laravel
+	vendor/laravelbook/laravel4-powerpack
+	...
+
+The folder `vendor/laravelbook/laravel4-powerpack` contain the **Laravel 4 PowerPack** components:
+
+	laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/HTML.php
+	laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Form.php
+	laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
+	
+By default, composer will autoload the required classes. If you encounter any error, run the following command to force composer re-generate the autoload file:
+
+~~~sh
+$ composer dump-autoload
+~~~
+
+Next, append the following code to the `providers` array in the `app/config/app.php` file of your Laravel 4 application:
+
+~~~php
+"LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider",
+~~~
+
+The `providers` section should like like the following:
+
+~~~php
+'providers' => array(
+    ...
+    'LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider',
+),
+~~~
+
+Next, add the following code to the `aliases` array in the `app/config/app.php` file:
+
+~~~php
+'HTML' => 'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade',
+'Form' => 'LaravelBook\Laravel4Powerpack\Facades\FormFacade',
+'Str' => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade',
+~~~
+
+The `aliases` array should now look like the snippet below:
+
+~~~php
+'aliases' => array(
+    ...
+	'HTML' => 'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade',
+	'Form' => 'LaravelBook\Laravel4Powerpack\Facades\FormFacade',
+	'Str' => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade',	
+),
+~~~
+
+Laravel 4 Powerpack is now ready to be used in your web application!
+
 <a name="html_class"></a>
 # Building HTML
 
