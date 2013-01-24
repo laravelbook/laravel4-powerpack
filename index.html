@@ -89,12 +89,12 @@ vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
 <div class="highlight"><pre><span class="nv">$ </span>composer dump-autoload
 </pre></div>
 
-<p>Next, append the following code to the <code>providers</code> array in the <code>app/config/app.php</code> file of your Laravel 4 application:</p>
+<p>Next, we need to install the package in your Laravel 4 application. Open up the the <code>app/config/app.php</code> file and append the following code to the <code>providers</code> array:</p>
 
 <div class="highlight"><pre><span class="s2">"LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider"</span><span class="p">,</span>
 </pre></div>
 
-<p>The <code>providers</code> section should like like the following:</p>
+<p>The <code>providers</code> section should look like the following snippet:</p>
 
 <div class="highlight"><pre><span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
     <span class="o">...</span>
@@ -120,6 +120,16 @@ vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
 </pre></div>
 
 <p>Laravel 4 Powerpack is now ready to be used in your web application!</p>
+
+<p>You can verify the installation by running some simple test code like this:</p>
+
+<div class="highlight"><pre><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">open</span><span class="p">(</span> <span class="s1">'/'</span> <span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">image</span><span class="p">(</span> <span class="s1">'img/hello.jpg'</span> <span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">text</span><span class="p">(</span> <span class="nx">Str</span><span class="o">::</span><span class="na">upper</span><span class="p">(</span><span class="s1">'hello world!'</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">close</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
 
 <p><a name="html_class"></a></p>
 
