@@ -49,7 +49,79 @@
 <li><p><a href="#html_class">HTML</a></p></li>
 <li><p><a href="#form_class">Form</a></p></li>
 <li><p><a href="#str_class">Str</a></p></li>
-</ul><p><a name="html_class"></a></p>
+</ul><h1>Installation</h1>
+
+<p>Open up the Laravel 4 <code>composer.json</code> file and add the <code>laravelbook/laravel4-powerpack</code> package to the <code>require</code> section:</p>
+
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">"require"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"laravel/framework"</span><span class="p">:</span> <span class="s2">"4.0.*"</span><span class="p">,</span>
+        <span class="err">...</span>
+        <span class="nt">"laravelbook/laravel4-powerpack"</span><span class="p">:</span> <span class="s2">"dev-master"</span>
+    <span class="p">}</span>
+    <span class="err">...</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Run the composer <code>install</code> or <code>update</code> task, which will make composer download requested packages and setup initial environment:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>composer update
+</pre></div>
+
+<p>You'll now have a <code>composer.json</code>, <code>composer.lock</code> as well as a <code>vendor</code> folder which contains:</p>
+
+<pre><code>vendor/autoload.php
+vendor/composer
+vendor/laravel
+vendor/laravelbook/laravel4-powerpack
+...
+</code></pre>
+
+<p>The folder <code>vendor/laravelbook/laravel4-powerpack</code> contain the <strong>Laravel 4 PowerPack</strong> components:</p>
+
+<pre><code>vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/HTML.php
+vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Form.php
+vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
+</code></pre>
+
+<p>By default, composer will autoload the required classes. If you encounter any error, run the following command to force composer re-generate the autoload file:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>composer dump-autoload
+</pre></div>
+
+<p>Next, append the following code to the <code>providers</code> array in the <code>app/config/app.php</code> file of your Laravel 4 application:</p>
+
+<div class="highlight"><pre><span class="s2">"LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider"</span><span class="p">,</span>
+</pre></div>
+
+<p>The <code>providers</code> section should like like the following:</p>
+
+<div class="highlight"><pre><span class="s1">'providers'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="s1">'LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider'</span><span class="p">,</span>
+<span class="p">),</span>
+</pre></div>
+
+<p>Next, add the following code to the <code>aliases</code> array in the <code>app/config/app.php</code> file:</p>
+
+<div class="highlight"><pre><span class="s1">'HTML'</span> <span class="o">=&gt;</span> <span class="s1">'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade'</span><span class="p">,</span>
+<span class="s1">'Form'</span> <span class="o">=&gt;</span> <span class="s1">'LaravelBook\Laravel4Powerpack\Facades\FormFacade'</span><span class="p">,</span>
+<span class="s1">'Str'</span> <span class="o">=&gt;</span> <span class="s1">'LaravelBook\Laravel4Powerpack\Facades\StrFacade'</span><span class="p">,</span>
+</pre></div>
+
+<p>The <code>aliases</code> array should now look like the snippet below:</p>
+
+<div class="highlight"><pre><span class="s1">'aliases'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="s1">'HTML'</span> <span class="o">=&gt;</span> <span class="s1">'LaravelBook\Laravel4Powerpack\Facades\HTMLFacade'</span><span class="p">,</span>
+    <span class="s1">'Form'</span> <span class="o">=&gt;</span> <span class="s1">'LaravelBook\Laravel4Powerpack\Facades\FormFacade'</span><span class="p">,</span>
+    <span class="s1">'Str'</span> <span class="o">=&gt;</span> <span class="s1">'LaravelBook\Laravel4Powerpack\Facades\StrFacade'</span><span class="p">,</span> 
+<span class="p">),</span>
+</pre></div>
+
+<p>Laravel 4 Powerpack is now ready to be used in your web application!</p>
+
+<p><a name="html_class"></a></p>
 
 <h1>Building HTML</h1>
 
@@ -75,13 +147,8 @@
 
 <h4>Converting a string to its entity representation:</h4>
 
-<pre><code>echo HTML::entities('&lt;script&gt;alert(\'hi\');&lt;/script&gt;');
-</code></pre>
-
-<h4>Using the "e" global helper:</h4>
-
-<pre><code>echo e('&lt;script&gt;alert(\'hi\');&lt;/script&gt;');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">entities</span><span class="p">(</span><span class="s1">'&lt;script&gt;alert(\'hi\');&lt;/script&gt;'</span><span class="p">);</span>
+</pre></div>
 
 <p><a name="scripts-and-style-sheets"></a></p>
 
@@ -89,18 +156,18 @@
 
 <h4>Generating a reference to a JavaScript file:</h4>
 
-<pre><code>echo HTML::script('js/scrollTo.js');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">script</span><span class="p">(</span><span class="s1">'js/scrollTo.js'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating a reference to a CSS file:</h4>
 
-<pre><code>echo HTML::style('css/common.css');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">style</span><span class="p">(</span><span class="s1">'css/common.css'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating a reference to a CSS file using a given media type:</h4>
 
-<pre><code>echo HTML::style('css/common.css', array('media' =&gt; 'print'));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">style</span><span class="p">(</span><span class="s1">'css/common.css'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'media'</span> <span class="o">=&gt;</span> <span class="s1">'print'</span><span class="p">));</span>
+</pre></div>
 
 <p><em>Further Reading:</em></p>
 
@@ -112,18 +179,18 @@
 
 <h4>Generating a link from a URI:</h4>
 
-<pre><code>echo HTML::link('user/profile', 'User Profile');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">link</span><span class="p">(</span><span class="s1">'user/profile'</span><span class="p">,</span> <span class="s1">'User Profile'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating a link that should use HTTPS:</h4>
 
-<pre><code>echo HTML::secure('user/profile', 'User Profile');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">secure</span><span class="p">(</span><span class="s1">'user/profile'</span><span class="p">,</span> <span class="s1">'User Profile'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating a link and specifying extra HTML attributes:</h4>
 
-<pre><code>echo HTML::link('user/profile', 'User Profile', array('id' =&gt; 'profile_link'));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">link</span><span class="p">(</span><span class="s1">'user/profile'</span><span class="p">,</span> <span class="s1">'User Profile'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'profile_link'</span><span class="p">));</span>
+</pre></div>
 
 <p><a name="links-to-named-routes"></a></p>
 
@@ -131,13 +198,13 @@
 
 <h4>Generating a link to a named route:</h4>
 
-<pre><code>echo HTML::route('profile');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">route</span><span class="p">(</span><span class="s1">'profile'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating a link to a named route with wildcard values:</h4>
 
-<pre><code>$url = HTML::route('profile', 'User Profile', array($username));
-</code></pre>
+<div class="highlight"><pre><span class="nv">$url</span> <span class="o">=</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">route</span><span class="p">(</span><span class="s1">'profile'</span><span class="p">,</span> <span class="s1">'User Profile'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="nv">$username</span><span class="p">));</span>
+</pre></div>
 
 <p><em>Further Reading:</em></p>
 
@@ -149,13 +216,13 @@
 
 <h4>Generating a link to a controller action:</h4>
 
-<pre><code>echo HTML::action('home@index');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">action</span><span class="p">(</span><span class="s1">'home@index'</span><span class="p">);</span>
+</pre></div>
 
 <h3>Generating a link to a controller action with wildcard values:</h3>
 
-<pre><code>echo HTML::action('user@profile', 'User Profile', array($username));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">action</span><span class="p">(</span><span class="s1">'user@profile'</span><span class="p">,</span> <span class="s1">'User Profile'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="nv">$username</span><span class="p">));</span>
+</pre></div>
 
 <p><a name="mail-to-links"></a></p>
 
@@ -165,13 +232,13 @@
 
 <h4>Creating a mail-to link:</h4>
 
-<pre><code>echo HTML::mailto('example@gmail.com', 'E-Mail Me!');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">mailto</span><span class="p">(</span><span class="s1">'example@gmail.com'</span><span class="p">,</span> <span class="s1">'E-Mail Me!'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Creating a mail-to link using the e-mail address as the link text:</h4>
 
-<pre><code>echo HTML::mailto('example@gmail.com');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">mailto</span><span class="p">(</span><span class="s1">'example@gmail.com'</span><span class="p">);</span>
+</pre></div>
 
 <p><a name="images"></a></p>
 
@@ -179,13 +246,13 @@
 
 <h4>Generating an HTML image tag:</h4>
 
-<pre><code>echo HTML::image('img/smile.jpg', $alt_text);
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">image</span><span class="p">(</span><span class="s1">'img/smile.jpg'</span><span class="p">,</span> <span class="nv">$alt_text</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating an HTML image tag with extra HTML attributes:</h4>
 
-<pre><code>echo HTML::image('img/smile.jpg', $alt_text, array('id' =&gt; 'smile'));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">image</span><span class="p">(</span><span class="s1">'img/smile.jpg'</span><span class="p">,</span> <span class="nv">$alt_text</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="s1">'smile'</span><span class="p">));</span>
+</pre></div>
 
 <p><a name="lists"></a></p>
 
@@ -193,12 +260,12 @@
 
 <h4>Creating lists from an array of items:</h4>
 
-<pre><code>echo HTML::ol(array('Get Peanut Butter', 'Get Chocolate', 'Feast'));
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">ol</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Get Peanut Butter'</span><span class="p">,</span> <span class="s1">'Get Chocolate'</span><span class="p">,</span> <span class="s1">'Feast'</span><span class="p">));</span>
 
-echo HTML::ul(array('Ubuntu', 'Snow Leopard', 'Windows'));
+<span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">ul</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Ubuntu'</span><span class="p">,</span> <span class="s1">'Snow Leopard'</span><span class="p">,</span> <span class="s1">'Windows'</span><span class="p">));</span>
 
-echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows' =&gt; 'An operating system by Microsoft'));
-</code></pre>
+<span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">dl</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Ubuntu'</span> <span class="o">=&gt;</span> <span class="s1">'Canonical'</span><span class="p">,</span> <span class="s1">'Windows'</span> <span class="o">=&gt;</span> <span class="s1">'Microsoft'</span><span class="p">));</span>
+</pre></div>
 
 <p><a name="custom-macros"></a></p>
 
@@ -208,18 +275,18 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Registering a HTML macro:</h4>
 
-<pre><code>HTML::macro('myElement', function()
-{
-    return '&lt;article type="awesome"&gt;';
-});
-</code></pre>
+<div class="highlight"><pre><span class="nx">HTML</span><span class="o">::</span><span class="na">macro</span><span class="p">(</span><span class="s1">'myElement'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'&lt;article type="awesome"&gt;'</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
 
 <p>Now you can call your macro using its name:</p>
 
 <h4>Calling a custom HTML macro:</h4>
 
-<pre><code>echo HTML::myElement();
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">myElement</span><span class="p">();</span>
+</pre></div>
 
 <hr><p><a name="form_class"></a></p>
 
@@ -247,38 +314,38 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Opening a form to POST to the current URL:</h4>
 
-<pre><code>echo Form::open();
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">open</span><span class="p">();</span>
+</pre></div>
 
 <h4>Opening a form using a given URI and request method:</h4>
 
-<pre><code>echo Form::open('user/profile', 'PUT');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">open</span><span class="p">(</span><span class="s1">'user/profile'</span><span class="p">,</span> <span class="s1">'PUT'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Opening a Form that POSTS to a HTTPS URL:</h4>
 
-<pre><code>echo Form::openSecure('user/profile');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">openSecure</span><span class="p">(</span><span class="s1">'user/profile'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Specifying extra HTML attributes on a form open tag:</h4>
 
-<pre><code>echo Form::open('user/profile', 'POST', array('class' =&gt; 'awesome'));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">open</span><span class="p">(</span><span class="s1">'user/profile'</span><span class="p">,</span> <span class="s1">'POST'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'awesome'</span><span class="p">));</span>
+</pre></div>
 
 <h4>Opening a form that accepts file uploads:</h4>
 
-<pre><code>echo Form::openForFiles('users/profile');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">openForFiles</span><span class="p">(</span><span class="s1">'users/profile'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Opening a form that accepts file uploads and uses HTTPS:</h4>
 
-<pre><code>echo Form::openSecureForFiles('users/profile');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">openSecureForFiles</span><span class="p">(</span><span class="s1">'users/profile'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Closing a form:</h4>
 
-<pre><code>echo Form::close();
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">close</span><span class="p">();</span>
+</pre></div>
 
 <p><a name="csrf-protection"></a></p>
 
@@ -288,21 +355,21 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generating a hidden field containing the session's CSRF token:</h4>
 
-<pre><code>echo Form::token();
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">token</span><span class="p">();</span>
+</pre></div>
 
 <h4>Attaching the CSRF filter to a route:</h4>
 
-<pre><code>Route::post('profile', array('before' =&gt; 'csrf', function()
-{
-    //
-}));
-</code></pre>
+<div class="highlight"><pre><span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">'profile'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'before'</span> <span class="o">=&gt;</span> <span class="s1">'csrf'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//</span>
+<span class="p">}));</span>
+</pre></div>
 
 <h4>Retrieving the CSRF token string:</h4>
 
-<pre><code>$token = Session::getToken();
-</code></pre>
+<div class="highlight"><pre><span class="nv">$token</span> <span class="o">=</span> <span class="nx">Session</span><span class="o">::</span><span class="na">getToken</span><span class="p">();</span>
+</pre></div>
 
 <blockquote>
 <p><strong>Note:</strong> You must specify a session driver before using the Laravel CSRF protection facilities.</p>
@@ -319,13 +386,13 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generating a label element:</h4>
 
-<pre><code>echo Form::label('email', 'E-Mail Address');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">label</span><span class="p">(</span><span class="s1">'email'</span><span class="p">,</span> <span class="s1">'E-Mail Address'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Specifying extra HTML attributes for a label:</h4>
 
-<pre><code>echo Form::label('email', 'E-Mail Address', array('class' =&gt; 'awesome'));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">label</span><span class="p">(</span><span class="s1">'email'</span><span class="p">,</span> <span class="s1">'E-Mail Address'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'awesome'</span><span class="p">));</span>
+</pre></div>
 
 <blockquote>
 <p><strong>Note:</strong> After creating a label, any form element you create with a name matching the label name will automatically receive an ID matching the label name as well.</p>
@@ -337,13 +404,13 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generate a text input element:</h4>
 
-<pre><code>echo Form::text('username');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">text</span><span class="p">(</span><span class="s1">'username'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Specifying a default value for a text input element:</h4>
 
-<pre><code>echo Form::text('email', 'example@gmail.com');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">text</span><span class="p">(</span><span class="s1">'email'</span><span class="p">,</span> <span class="s1">'example@gmail.com'</span><span class="p">);</span>
+</pre></div>
 
 <blockquote>
 <p><strong>Note:</strong> The <em>hidden</em> and <em>textarea</em> methods have the same signature as the <em>text</em> method. You just learned three methods for the price of one!</p>
@@ -351,8 +418,8 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generating a password input element:</h4>
 
-<pre><code>echo Form::password('password');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">password</span><span class="p">(</span><span class="s1">'password'</span><span class="p">);</span>
+</pre></div>
 
 <p><a name="checkboxes-and-radio-buttons"></a></p>
 
@@ -360,13 +427,13 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generating a checkbox input element:</h4>
 
-<pre><code>echo Form::checkbox('name', 'value');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">checkbox</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">);</span>
+</pre></div>
 
 <h4>Generating a checkbox that is checked by default:</h4>
 
-<pre><code>echo Form::checkbox('name', 'value', true);
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">checkbox</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</pre></div>
 
 <blockquote>
 <p><strong>Note:</strong> The <em>radio</em> method has the same signature as the <em>checkbox</em> method. Two for one!</p>
@@ -378,8 +445,8 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generate a file input element:</h4>
 
-<pre><code>echo Form::file('image');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">file</span><span class="p">(</span><span class="s1">'image'</span><span class="p">);</span>
+</pre></div>
 
 <p><a name="drop-down-lists"></a></p>
 
@@ -387,13 +454,13 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generating a drop-down list from an array of items:</h4>
 
-<pre><code>echo Form::select('size', array('L' =&gt; 'Large', 'S' =&gt; 'Small'));
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">select</span><span class="p">(</span><span class="s1">'size'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'L'</span> <span class="o">=&gt;</span> <span class="s1">'Large'</span><span class="p">,</span> <span class="s1">'S'</span> <span class="o">=&gt;</span> <span class="s1">'Small'</span><span class="p">));</span>
+</pre></div>
 
 <h4>Generating a drop-down list with an item selected by default:</h4>
 
-<pre><code>echo Form::select('size', array('L' =&gt; 'Large', 'S' =&gt; 'Small'), 'S');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">select</span><span class="p">(</span><span class="s1">'size'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'L'</span> <span class="o">=&gt;</span> <span class="s1">'Large'</span><span class="p">,</span> <span class="s1">'S'</span> <span class="o">=&gt;</span> <span class="s1">'Small'</span><span class="p">),</span> <span class="s1">'S'</span><span class="p">);</span>
+</pre></div>
 
 <p><a name="buttons"></a></p>
 
@@ -401,8 +468,8 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Generating a submit button element:</h4>
 
-<pre><code>echo Form::submit('Click Me!');
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">submit</span><span class="p">(</span><span class="s1">'Click Me!'</span><span class="p">);</span>
+</pre></div>
 
 <blockquote>
 <p><strong>Note:</strong> Need to create a button element? Try the <em>button</em> method. It has the same signature as <em>submit</em>.</p>
@@ -416,18 +483,18 @@ echo HTML::dl(array('Ubuntu' =&gt; 'An operating system by Canonical', 'Windows'
 
 <h4>Registering a Form macro:</h4>
 
-<pre><code>Form::macro('myField', function()
-{
-    return '&lt;input type="awesome"&gt;';
-});
-</code></pre>
+<div class="highlight"><pre><span class="nx">Form</span><span class="o">::</span><span class="na">macro</span><span class="p">(</span><span class="s1">'myField'</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'&lt;input type="awesome"&gt;'</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
 
 <p>Now you can call your macro using its name:</p>
 
 <h4>Calling a custom Form macro:</h4>
 
-<pre><code>echo Form::myField();
-</code></pre>
+<div class="highlight"><pre><span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">myField</span><span class="p">();</span>
+</pre></div>
 
 <hr><p><a name="str_class"></a></p>
 
