@@ -52,13 +52,13 @@ By default, composer will autoload the required classes. If you encounter any er
 $ composer dump-autoload
 ~~~
 
-Next, append the following code to the `providers` array in the `app/config/app.php` file of your Laravel 4 application:
+Next, we need to install the package in your Laravel 4 application. Open up the the `app/config/app.php` file and append the following code to the `providers` array:
 
 ~~~php
 "LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider",
 ~~~
 
-The `providers` section should like like the following:
+The `providers` section should look like the following snippet:
 
 ~~~php
 'providers' => array(
@@ -87,6 +87,17 @@ The `aliases` array should now look like the snippet below:
 ~~~
 
 Laravel 4 Powerpack is now ready to be used in your web application!
+
+You can verify the installation by running some simple test code like this:
+
+~~~php
+Route::get('/', function() {
+	echo Form::open( '/' );
+	echo HTML::image( 'img/hello.jpg' );
+	echo Form::text( Str::upper('hello world!') );
+	echo Form::close();
+});
+~~~
 
 <a name="html_class"></a>
 # Building HTML
