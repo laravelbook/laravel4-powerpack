@@ -1,7 +1,9 @@
 laravel4-powerpack
 ==================
 
-Brings back the helper classes from Laravel 3 to Laravel 4... and all that in a single, convenient package!
+Brings back the helper classes and methods from Laravel 3 to Laravel 4... and all that in a single, convenient package!
+
+![Kint debugger](http://i.imgur.com/5oO26ta.png)
 
 **`laravel4-powerpack`** contains Laravel 4 ports of the following helper classes:
 
@@ -96,6 +98,7 @@ Route::get('/', function() {
 	echo HTML::image( 'img/hello.jpg' );
 	echo Form::text( Str::upper('hello world!') );
 	echo Form::close();
+	echo dd( $_REQUEST );
 });
 ~~~
 
@@ -639,3 +642,7 @@ $class = Str::classify('taylor otwell') // Returns "Taylor_Otwell"
 `startsWith( $haystack, $needle )`: Determine if a string starts with a given needle.
 
 `contains( $haystack, $needle )`: Determine if a given string contains a given sub-string.
+
+## Additional Helper Methods
+
+`dd( $value )`: Dumps the given value. Execution will halt after call to this function.
