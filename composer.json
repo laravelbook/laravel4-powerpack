@@ -16,7 +16,8 @@
     "require": {
         "php": ">=5.3.0",
         "illuminate/support": "4.0.x",
-        "illuminate/routing": "4.0.x"
+        "illuminate/routing": "4.0.x",
+        "raveren/kint": "dev-master"
     },
     "autoload": {
         "psr-0": {
