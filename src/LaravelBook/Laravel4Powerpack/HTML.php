@@ -84,6 +84,18 @@ class HTML {
 	}
 
 	/**
+	 * Wraps opening and closing HTML tags around the given input.
+	 *
+	 * @param  string $value
+	 * @param  string $tag
+	 * @return string
+	 */
+	public function wrapHTMLTag($value, $tag)
+	{
+		return '<' . $tag . '>' . $value . '</' . $tag . '>';
+	}
+
+	/**
 	 * Convert HTML special characters
 	 *
 	 * The encoding in $encoding will be used
