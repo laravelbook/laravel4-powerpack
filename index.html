@@ -4,32 +4,46 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Laravel4-powerpack by laravelbook</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
   <body>
-    <div class="wrapper">
+
       <header>
         <h1>Laravel4-powerpack</h1>
         <p>Brings back HTML, Form and Str helper classes to Laravel 4!</p>
-        <p class="view"><a href="https://github.com/laravelbook/laravel4-powerpack">View the Project on GitHub <small>laravelbook/laravel4-powerpack</small></a></p>
-        <ul>
-          <li><a href="https://github.com/laravelbook/laravel4-powerpack/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/laravelbook/laravel4-powerpack/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/laravelbook/laravel4-powerpack">View On <strong>GitHub</strong></a></li>
-        </ul>
       </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/laravelbook/laravel4-powerpack" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/laravelbook/laravel4-powerpack/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/laravelbook/laravel4-powerpack/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
       <section>
         <h1>laravel4-powerpack</h1>
 
-<p>Brings back the helper classes from Laravel 3... and all that in a single, convenient package!</p>
+<p>Brings back the Laravel 3 helper classes and methods to Laravel 4... and all that in a single, convenient package!</p>
+
+<p><img src="http://i.imgur.com/5oO26ta.png" alt="Kint debugger"></p>
 
 <p><strong><code>laravel4-powerpack</code></strong> contains Laravel 4 ports of the following helper classes:</p>
 
@@ -116,6 +130,7 @@ vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
     <span class="k">echo</span> <span class="nx">HTML</span><span class="o">::</span><span class="na">image</span><span class="p">(</span> <span class="s1">'img/hello.jpg'</span> <span class="p">);</span>
     <span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">text</span><span class="p">(</span> <span class="nx">Str</span><span class="o">::</span><span class="na">upper</span><span class="p">(</span><span class="s1">'hello world!'</span><span class="p">)</span> <span class="p">);</span>
     <span class="k">echo</span> <span class="nx">Form</span><span class="o">::</span><span class="na">close</span><span class="p">();</span>
+    <span class="k">echo</span> <span class="nx">dd</span><span class="p">(</span> <span class="nv">$_REQUEST</span> <span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 
@@ -641,13 +656,27 @@ vendor/laravelbook/laravel4-powerpack/src/LaravelBook/Laravel4Powerpack/Str.php
 <p><code>startsWith( $haystack, $needle )</code>: Determine if a string starts with a given needle.</p>
 
 <p><code>contains( $haystack, $needle )</code>: Determine if a given string contains a given sub-string.</p>
+
+<h2>Additional Helper Methods</h2>
+
+<p><code>dd( $value )</code>: Dumps the given value. Execution will halt after call to this function.</p>
       </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/laravelbook">laravelbook</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/laravelbook">laravelbook</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-37509080-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
