@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Illuminate\Support\Pluralizer;
+use Illuminate\Support\Pluralizer as Pluralizer;
 
 if ( ! defined( 'MB_STRING' ) ) define( 'MB_STRING', (int) function_exists( 'mb_get_info' ) );
 
@@ -280,7 +280,7 @@ class Str {
 	 * @return string
 	 */
 	public function singular( $value ) {
-		return Illuminate\Support\Pluralizer::singular( $value );
+		return Pluralizer::singular( $value );
 	}
 
 	/**
@@ -299,7 +299,7 @@ class Str {
 	 * @return string
 	 */
 	public function plural( $value, $count = 2 ) {
-		return Illuminate\Support\Pluralizer::plural( $value, $count );
+		return Pluralizer::plural( $value, $count );
 	}
 
 	/**
