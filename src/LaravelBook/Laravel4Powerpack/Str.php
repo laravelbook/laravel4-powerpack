@@ -505,4 +505,68 @@ class Str {
 	public function finish( $value, $cap ) {
 		return rtrim( $value, $cap ).$cap;
 	}
+	
+	/**
+	 * The following: camel, quickRandom, snake and startsWith are
+	 * originally from Illuminate/Support/Str.php
+	 */
+
+	/**
+	 * Convert a value to camel case.
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public static function camel($value)
+	{
+		$value = ucwords(str_replace(array('-', '_'), ' ', $value));
+
+		return str_replace(' ', '', $value);
+	}
+	
+	/**
+	 * Generate a "random" alpha-numeric string.
+	 *
+	 * Should not be considered sufficient for cryptography, etc.
+	 *
+	 * @param  int     $length
+	 * @return string
+	 */
+	public static function quickRandom($length = 16)
+	{
+		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+		return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+	}
+	
+	/**
+	 * Convert a string to snake case.
+	 *
+	 * @param  string  $value
+	 * @param  string  $delimiter
+	 * @return string
+	 */
+	public static function snake($value, $delimiter = '_')
+	{
+		$replace = '$1'.$delimiter.'$2';
+
+		return ctype_lower($value) ? $value : strtolower(preg_replace('/(.)([A-Z])/', $replace, $value));
+	}
+	
+	/**
+	 * Determine if a string starts with a given needle.
+	 *
+	 * @param  string  $haystack
+	 * @param  string|array  $needle
+	 * @return bool
+	 */
+	public static function startsWith($haystack, $needles)
+	{
+		foreach ((array) $needles as $needle)
+		{
+			if (strpos($haystack, $needle) === 0) return true;
+		}
+
+		return false;
+	}
 }
