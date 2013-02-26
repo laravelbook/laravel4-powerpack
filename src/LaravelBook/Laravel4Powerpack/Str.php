@@ -507,7 +507,7 @@ class Str {
 	}
 	
 	/**
-	 * The following: camel, quickRandom, snake and startsWith are
+	 * The following: camel, quickRandom, snake are
 	 * originally from Illuminate/Support/Str.php
 	 */
 
@@ -551,22 +551,5 @@ class Str {
 		$replace = '$1'.$delimiter.'$2';
 
 		return ctype_lower($value) ? $value : strtolower(preg_replace('/(.)([A-Z])/', $replace, $value));
-	}
-	
-	/**
-	 * Determine if a string starts with a given needle.
-	 *
-	 * @param  string  $haystack
-	 * @param  string|array  $needle
-	 * @return bool
-	 */
-	public static function startsWith($haystack, $needles)
-	{
-		foreach ((array) $needles as $needle)
-		{
-			if (strpos($haystack, $needle) === 0) return true;
-		}
-
-		return false;
 	}
 }
