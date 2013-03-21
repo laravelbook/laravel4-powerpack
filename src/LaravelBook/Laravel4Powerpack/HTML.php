@@ -173,6 +173,22 @@ class HTML {
 	}
 
 	/**
+	 * Generate a HTML link
+	 *
+	 * Alias of HTML::to()
+	 *
+	 * @param  string $url
+	 * @param  string $title
+	 * @param  array  $attributes
+	 * @param  bool   $https
+	 * @return string
+	 */
+	public function link($url, $title = null, $attributes = array(), $parameters = array(), $https = null)
+	{
+		return $this->to($url, $title, $attributes, $parameters, $https);
+	}
+
+	/**
 	 * Generate a HTTPS HTML link
 	 *
 	 * @param  string $url
