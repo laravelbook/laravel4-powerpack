@@ -131,7 +131,7 @@ class HTML {
 	 */
 	public function script_tag($script, $attributes = array())
 	{
-		return '<script '.$this->attributes($attributes).'>'.$script.'</script>';
+		return '<script '.$this->attributes($attributes).'>'.$script.'</script>'.PHP_EOL;
 	}
 
 	/**
