@@ -121,6 +121,18 @@ class HTML {
 
 		return '<script src="'.$url.'"'.$this->attributes($attributes).'></script>'.PHP_EOL;
 	}
+	
+	/**
+	 * Generate a script tag with embed javascript
+	 *
+	 * @param string $script
+	 * @param array $attributes
+	 * @return string
+	 */
+	public function script_tag($script, $attributes = array())
+	{
+		return '<script '.$this->attributes($attributes).'>'.$script.'</script>'.PHP_EOL;
+	}
 
 	/**
 	 * Generate a link to a CSS file.
