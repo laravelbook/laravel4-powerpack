@@ -19,6 +19,9 @@
         "illuminate/routing": "4.0.x",
         "raveren/kint": "dev-master"
     },
+    "conflict": {
+        "illuminate/support": ">= 4.1.0"    
+    },
     "autoload": {
         "psr-0": {
             "LaravelBook\\Laravel4Powerpack": "src/"
